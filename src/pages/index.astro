@@ -1,16 +1,32 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileSidebar from '../components/layout/MobileSidebar.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Portfolio from '../components/sections/Portfolio.astro';
+import Team from '../components/sections/Team.astro';
+import Locations from '../components/sections/Locations.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Helo—Creative Agency | Digital Stars in the Universe">
+  <Header />
+  <main>
+    <Hero />
+    <Services />
+    <Portfolio />
+    <Team />
+    <Locations />
+  </main>
+  <Footer />
+  <MobileSidebar />
+</BaseLayout>
+
+<style>
+  main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

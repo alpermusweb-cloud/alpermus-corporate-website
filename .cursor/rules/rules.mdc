@@ -1,0 +1,161 @@
+1. Project Overview
+
+You are building the main corporate website for a company that operates in multiple business sectors and has multiple branch locations.
+	•	Framework: Astro (with Content Collections + MDX enabled)
+	•	Focus: SEO-friendly, fully mobile responsive, lightning-fast website
+	•	Design: Provided via Figma MCP → Cursor must implement layouts/components following Figma class names
+	•	Hosting: Vercel (SSG)
+	•	No dynamic server logic – site must be static where possible, only light interactivity (Astro Islands)
+    
+2. Structure
+
+File Tree
+
+/
+├─ src/
+│  ├─ components/
+│  │  ├─ layout/         (Header, Footer, BaseLayout)
+│  │  ├─ ui/             (Container, Section, Breadcrumbs)
+│  │  ├─ cards/          (SectorCard, LocationCard)
+│  │  ├─ blocks/         (Hero, Gallery, ContactBlock)
+│  ├─ content/           (content collections)
+│  │  ├─ sectors/        (each sector page: summary, gallery)
+│  │  ├─ locations/      (each branch location)
+│  │  ├─ pages/          (static: about, contact, etc.)
+│  ├─ pages/
+│  │  ├─ index.astro
+│  │  ├─ sectors/[slug].astro
+│  │  ├─ locations/[city]/[branch].astro
+│  │  ├─ about.astro
+│  │  └─ contact.astro
+│  ├─ lib/               (seo + schema helpers)
+│  ├─ styles/            (tokens.css + globals.css)
+│  └─ config/            (site.ts with base URL, locales)
+├─ public/images/        (raw images)
+└─ astro.config.mjs
+
+⸻
+
+3. Content Collections
+
+Sectors
+
+Each sector represents a business line (e.g., Restaurants, Construction, Cleaning).
+src/content/sectors/*.mdx
+
+Fields:
+	•	title (string)
+	•	slug (string)
+	•	summary (short description shown on detail page)
+	•	heroImage (string, optional)
+	•	gallery (array of images)
+	•	seo (title, description, image optional)
+
+Locations
+
+Each location represents a branch of the company.
+src/content/locations/*.mdx
+
+Fields:
+	•	city (string)
+	•	branch (string)
+	•	address (string)
+	•	phone (string, optional)
+	•	email (string, optional)
+	•	coords (lat, lng optional)
+	•	hours (array of { day, open, close })
+	•	images (array of strings)
+	•	sectorRefs (array of sector slugs)
+	•	seo (title, description)
+
+⸻
+
+4. Pages
+
+Homepage (index.astro)
+	•	Lists all sectors using SectorCard components
+	•	Each card links to /sectors/[slug]
+
+Sector Page (/sectors/[slug])
+
+Sections:
+	1.	Hero: Title, summary, heroImage
+	2.	Gallery: grid of gallery images
+	3.	Locations Section: filtered list of all branches that include this sector (sectorRefs)
+	•	For each location:
+	•	Name (city + branch)
+	•	Address + phone/email links
+	•	Opening hours
+	•	Google Maps embed (iframe, lazy-loaded)
+	•	“Get Directions” button linking to Google Maps
+	4.	SEO: JSON-LD Service schema for the sector
+
+Location Page (/locations/[city]/[branch])
+	•	Branch details: title, address, phone/email, working hours
+	•	Gallery of branch images
+	•	Google Maps embed (iframe, lazy)
+	•	Services (sectorRefs) linked back to sector pages
+	•	JSON-LD LocalBusiness schema
+
+About & Contact Pages
+	•	About: static markdown or MDX page
+	•	Contact: static form (no JS, use Netlify Forms or Formspree) + contact info
+
+⸻
+
+5. Components
+	•	SectorCard.astro: Used on homepage (title, thumbnail, CTA)
+	•	LocationCard.astro: Used inside sector pages (branch summary + mini-map)
+	•	Gallery.astro: Responsive grid with lazy-loaded <Image/>
+	•	Hero.astro: Page hero section with headline and image
+	•	ContactBlock.astro: Simple contact form
+
+⸻
+
+6. SEO Rules
+	•	Global <head>: meta title, description, OG tags, Twitter tags, canonical
+	•	Sitemap & Robots via @astrojs/sitemap
+	•	JSON-LD:
+	•	Organization on homepage
+	•	Service on sector pages
+	•	LocalBusiness on location pages
+	•	BreadcrumbList JSON-LD on sectors & locations
+	•	Images: always include alt, preload LCP image
+
+⸻
+
+7. Performance Rules
+	•	Astro Islands only when necessary (prefer static HTML)
+	•	All images optimized using @astrojs/image
+	•	Fonts self-hosted, display=swap
+	•	Maps via <iframe> embeds, not heavy JS libraries
+	•	Lazy-load iframes and galleries
+	•	Lighthouse performance ≥ 95
+
+⸻
+
+8. Multilingual (Optional)
+	•	Default: tr
+	•	Structure: /tr/... and /en/... if needed
+	•	Hreflang generated automatically
+
+⸻
+
+9. Quality Checklist
+	•	Lighthouse: Perf ≥ 95, SEO = 100, A11y ≥ 95
+	•	All sector and location pages generated with SSG (getStaticPaths)
+	•	Canonical URLs correct
+	•	Sitemap includes all pages
+	•	Images responsive and optimized
+	•	Mobile-first layout verified (≤375px)
+	•	All forms functional without JS
+
+⸻
+
+10. Cursor Implementation Notes
+	•	Always respect Figma-provided class names
+	•	Before writing JS, confirm if it can be solved with Astro or CSS
+	•	Use getCollection() for sectors and locations
+	•	Gracefully degrade: if gallery empty → show placeholder; if no coords → map falls back to address query
+	•	Strict TypeScript in all collections and props
+	•	ESLint + Prettier enabled

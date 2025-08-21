@@ -1,0 +1,227 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '/public/images/creative-agency-110551.webp';
+import moveAImage from '/public/images/moveA-56586a.png';
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <!-- Main Hero Text Section -->
+      <div class="hero-text-section">
+        <div class="hero-main-title">
+          <div class="title-container">
+            <h1 class="hero-title">Helo—the unique</h1>
+          </div>
+          
+          <div class="title-middle-row">
+            <div class="title-box-container">
+              <h1 class="hero-title-box">box</h1>
+            </div>
+            
+            <div class="move-image-container">
+              <Image 
+                src={moveAImage} 
+                alt="Move decoration" 
+                width={116} 
+                height={55}
+                loading="eager"
+              />
+            </div>
+            
+            <div class="title-creativity-container">
+              <h1 class="hero-title">of creativity</h1>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+      
+      <!-- Hero Image Section -->
+      <div class="hero-image-section">
+        <div class="hero-image-container">
+          <Image 
+            src={heroImage} 
+            alt="Creative Agency Hero" 
+            width={1798} 
+            height={799}
+            loading="eager"
+            class="hero-image"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 81px 31px;
+    border: 1px solid #121212;
+    margin-top: 60px; /* Account for fixed header */
+    overflow: hidden;
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1860px;
+    margin: 0 auto;
+  }
+  
+  /* Main Text Section */
+  .hero-text-section {
+    width: 980px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .hero-main-title {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .title-container {
+    width: 100%;
+  }
+  
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 110px;
+    line-height: 1.2;
+    color: #121212;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .title-middle-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .title-box-container {
+    flex: 0 0 auto;
+  }
+  
+  .hero-title-box {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 110px;
+    line-height: 1.2;
+    color: #121212;
+    margin: 0;
+  }
+  
+  .move-image-container {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 116px;
+    height: 55px;
+  }
+  
+  .title-creativity-container {
+    flex: 1;
+  }
+  
+
+  
+  /* Hero Image Section */
+  .hero-image-section {
+    border: 1px solid #121212;
+    padding: 30px 31px 31px;
+  }
+  
+  .hero-image-container {
+    width: 100%;
+    height: 799px;
+    overflow: hidden;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .hero-title,
+    .hero-title-box {
+      font-size: 80px;
+    }
+    
+    .hero-text-section {
+      width: 100%;
+      max-width: 980px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      padding: 40px 20px;
+      margin-top: 70px;
+    }
+    
+    .hero-title,
+    .hero-title-box {
+      font-size: 42px;
+      line-height: 1.1;
+    }
+    
+    .title-middle-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+    
+    .move-image-container {
+      width: 80px;
+      height: 38px;
+      align-self: center;
+    }
+    
+    .hero-image-container {
+      height: 400px;
+    }
+    
+    .hero-text-section {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      padding: 30px 15px;
+    }
+    
+    .hero-title,
+    .hero-title-box {
+      font-size: 32px;
+      line-height: 1.1;
+    }
+    
+    .title-middle-row {
+      gap: 10px;
+    }
+    
+    .move-image-container {
+      width: 60px;
+      height: 28px;
+    }
+    
+    .hero-image-container {
+      height: 300px;
+    }
+  }
+</style>

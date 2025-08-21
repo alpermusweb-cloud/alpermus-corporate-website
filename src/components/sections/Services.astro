@@ -1,0 +1,468 @@
+---
+import { Image } from 'astro:assets';
+import featuresImage from '/public/images/features-a.jpg';
+---
+
+<section class="services">
+  <div class="container">
+    <div class="services-content">
+      <!-- Top Section - Intro Text with Image -->
+      <div class="services-intro-section">
+        <div class="features-image-container">
+          <Image 
+            src={featuresImage} 
+            alt="Features" 
+            width={400} 
+            height={550}
+            class="features-image"
+          />
+        </div>
+        
+        <div class="intro-content">
+          <h2 class="intro-title">
+            Helo—creates digital<br>
+            stars in the universe &<br>
+            sharpens your brand<br>
+            value
+          </h2>
+          
+          <p class="intro-description">
+            We're a creative agency offers everything you<br>
+            need to successfully hire &<br>
+            manage your new remote team. Let's play a<br>
+            creative games with ideas. Update<br>
+            the brand expands the creativity.
+          </p>
+          
+          <a href="#about" class="learn-more-link">
+            LEARN MORE US
+            <div class="learn-more-underline"></div>
+          </a>
+        </div>
+        
+        <!-- Decorative Wireframe Element -->
+        <div class="wireframe-decoration">
+          <svg width="150" height="150" viewBox="0 0 150 150" fill="none" class="wireframe-sphere">
+            <!-- Simplified wireframe sphere -->
+            <defs>
+              <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#000" stroke-width="0.2" opacity="0.1"/>
+              </pattern>
+            </defs>
+            <!-- Concentric circles -->
+            <circle cx="75" cy="75" r="60" fill="none" stroke="#000" stroke-width="0.6" opacity="0.1"/>
+            <circle cx="75" cy="75" r="45" fill="none" stroke="#000" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="75" cy="75" r="30" fill="none" stroke="#000" stroke-width="0.4" opacity="0.2"/>
+            <!-- Cross lines -->
+            <line x1="75" y1="15" x2="75" y2="135" stroke="#000" stroke-width="0.3" opacity="0.15"/>
+            <line x1="15" y1="75" x2="135" y2="75" stroke="#000" stroke-width="0.3" opacity="0.15"/>
+            <!-- Diagonal lines -->
+            <line x1="30" y1="30" x2="120" y2="120" stroke="#000" stroke-width="0.2" opacity="0.1"/>
+            <line x1="120" y1="30" x2="30" y2="120" stroke="#000" stroke-width="0.2" opacity="0.1"/>
+            <!-- Subtle grid -->
+            <rect width="150" height="150" fill="url(#smallGrid)" opacity="0.03"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Bottom Section - 4 Service Cards in Row -->
+      <div class="services-cards-section">
+        <!-- Service Card 1: Branding -->
+        <div class="service-card">
+          <div class="service-image">
+            <div class="service-image-placeholder"></div>
+          </div>
+          
+          <h3 class="service-title">Branding</h3>
+          
+          <p class="service-description">
+            Having these marketplace to your branded skilled team of designers and developers who reputation perfection.
+          </p>
+        </div>
+        
+        <!-- Service Card 2: Development -->
+        <div class="service-card">
+          <div class="service-image">
+            <div class="service-image-placeholder"></div>
+          </div>
+          
+          <h3 class="service-title">Development</h3>
+          
+          <p class="service-description">
+            Having these marketplace to your branded skilled team of designers and developers who reputation perfection.
+          </p>
+        </div>
+        
+        <!-- Service Card 3: Digital Marketing -->
+        <div class="service-card">
+          <div class="service-image">
+            <div class="service-image-placeholder"></div>
+          </div>
+          
+          <h3 class="service-title">Digital Marketing</h3>
+          
+          <p class="service-description">
+            Having these marketplace to your branded skilled team of designers and developers who reputation perfection.
+          </p>
+        </div>
+        
+        <!-- Service Card 4: UI Design -->
+        <div class="service-card">
+          <div class="service-image">
+            <div class="service-image-placeholder"></div>
+          </div>
+          
+          <h3 class="service-title">UI Design</h3>
+          
+          <p class="service-description">
+            Having these marketplace to your branded skilled team of designers and developers who reputation perfection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 0 1px 1px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .services-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+  }
+  
+  /* Top Section - Intro with Image */
+  .services-intro-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 150px;
+    padding: 130px 60px;
+    border-bottom: 1px solid #121212;
+    position: relative;
+    min-height: 700px;
+  }
+  
+  .features-image-container {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .features-image {
+    width: 350px;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .intro-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    min-width: 600px;
+    position: relative;
+  }
+  
+  .intro-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .intro-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #000000;
+    margin: 0;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .learn-more-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.45;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: opacity 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  
+  .learn-more-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #000000;
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .learn-more-link:hover .learn-more-underline {
+    transform: scaleX(4);
+  }
+  
+
+  
+  /* Wireframe Decoration */
+  .wireframe-decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.2;
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+  }
+  
+  .wireframe-sphere {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    animation: rotate 20s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Disable animation for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .wireframe-sphere {
+      animation: none;
+    }
+  }
+  
+  /* Bottom Section - Service Cards */
+  .services-cards-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  
+  .service-card {
+    padding: 60px 40px;
+    border-right: 1px solid #121212;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-height: 450px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .service-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-card:last-child {
+    border-right: none;
+  }
+  
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  
+  .service-description {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000000;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .service-image {
+    width: 107px;
+    height: 104px;
+    margin-bottom: 20px;
+    order: -1;
+  }
+  
+  .service-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .services-intro-section {
+      flex-direction: column;
+      text-align: center;
+      gap: 60px;
+      padding: 100px 40px;
+    }
+    
+    .features-image-container {
+      flex: none;
+    }
+    
+    .intro-content {
+      flex: none;
+      padding-left: 0;
+      max-width: none;
+      min-width: auto;
+      align-items: center;
+    }
+    
+    .intro-title,
+    .intro-description {
+      text-align: center;
+    }
+    
+    .wireframe-decoration {
+      display: none;
+    }
+    
+    .services-cards-section {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .service-card {
+      border-bottom: 1px solid #121212;
+    }
+    
+    .service-card:nth-child(even) {
+      border-right: none;
+    }
+    
+    .service-card:nth-child(3),
+    .service-card:nth-child(4) {
+      border-bottom: none;
+    }
+    
+    .features-image {
+      width: 350px;
+      height: 450px;
+    }
+    
+    .intro-title {
+      font-size: 54px;
+    }
+    
+    .intro-description {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .services-intro-section {
+      padding: 80px 30px;
+      gap: 40px;
+    }
+    
+    .services-cards-section {
+      grid-template-columns: 1fr;
+    }
+    
+    .service-card {
+      padding: 50px 30px;
+      border-right: none;
+      border-bottom: 1px solid #121212;
+      min-height: 350px;
+    }
+    
+    .service-card:last-child {
+      border-bottom: none;
+    }
+    
+    .service-title {
+      font-size: 28px;
+    }
+    
+    .service-description {
+      font-size: 15px;
+    }
+    
+    .intro-title {
+      font-size: 42px;
+    }
+    
+    .intro-description {
+      font-size: 18px;
+    }
+    
+    .features-image {
+      width: 280px;
+      height: 360px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-intro-section {
+      padding: 60px 20px;
+      gap: 30px;
+    }
+    
+    .intro-title {
+      font-size: 32px;
+    }
+    
+    .intro-description {
+      font-size: 16px;
+    }
+    
+    .features-image {
+      width: 240px;
+      height: 300px;
+    }
+    
+    .service-card {
+      padding: 40px 25px;
+      min-height: 300px;
+    }
+    
+    .service-title {
+      font-size: 24px;
+    }
+    
+    .service-description {
+      font-size: 14px;
+    }
+  }
+</style>

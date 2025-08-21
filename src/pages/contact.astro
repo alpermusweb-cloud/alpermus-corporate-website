@@ -1,0 +1,988 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileSidebar from '../components/layout/MobileSidebar.astro';
+import { Image } from 'astro:assets';
+import contactImage from '/public/images/features-a.jpg';
+---
+
+<BaseLayout title="Contact Us | Get In Touch - Helo Creative Agency">
+  <Header />
+  <main class="contact-page">
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="contact-hero-content">
+          <div class="hero-text">
+            <h1 class="contact-title">
+              Let's create something<br>
+              amazing together
+            </h1>
+            
+            <p class="contact-description">
+              Ready to transform your brand and create digital excellence? Get in touch with our team and let's discuss how we can bring your vision to life across our global network.
+            </p>
+            
+            <div class="contact-highlights">
+              <div class="highlight-item">
+                <span class="highlight-number">24h</span>
+                <span class="highlight-text">Response Time</span>
+              </div>
+              
+              <div class="highlight-item">
+                <span class="highlight-number">7</span>
+                <span class="highlight-text">Global Offices</span>
+              </div>
+              
+              <div class="highlight-item">
+                <span class="highlight-number">150+</span>
+                <span class="highlight-text">Expert Team</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-image">
+            <Image 
+              src={contactImage} 
+              alt="Contact our creative team" 
+              width={400} 
+              height={550}
+              class="contact-hero-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="form-content">
+          <div class="form-header">
+            <h2 class="form-title">Send us a message</h2>
+            <p class="form-description">
+              Fill out the form below and we'll get back to you within 24 hours. For urgent inquiries, feel free to call us directly.
+            </p>
+          </div>
+          
+          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName" class="form-label">First Name</label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  name="firstName" 
+                  class="form-input" 
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  name="lastName" 
+                  class="form-input" 
+                  required
+                />
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  class="form-input" 
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  class="form-input"
+                />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="company" class="form-label">Company Name</label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                class="form-input"
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="service" class="form-label">Service Interest</label>
+              <select id="service" name="service" class="form-select" required>
+                <option value="">Select a service</option>
+                <option value="branding">Branding</option>
+                <option value="development">Development</option>
+                <option value="digital-marketing">Digital Marketing</option>
+                <option value="ui-design">UI Design</option>
+                <option value="ux-design">UX Design</option>
+                <option value="data-analytics">Data Analytics</option>
+                <option value="social-media">Social Media</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="budget" class="form-label">Project Budget</label>
+              <select id="budget" name="budget" class="form-select">
+                <option value="">Select budget range</option>
+                <option value="under-10k">Under $10,000</option>
+                <option value="10k-25k">$10,000 - $25,000</option>
+                <option value="25k-50k">$25,000 - $50,000</option>
+                <option value="50k-100k">$50,000 - $100,000</option>
+                <option value="over-100k">Over $100,000</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Project Details</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-textarea" 
+                rows="6" 
+                placeholder="Tell us about your project, goals, and timeline..."
+                required
+              ></textarea>
+            </div>
+            
+            <button type="submit" class="form-submit">
+              SEND MESSAGE
+              <div class="submit-underline"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Locations Section -->
+    <section class="locations">
+      <div class="container">
+        <!-- Section Title -->
+        <div class="locations-header">
+          <h2 class="locations-title">LOCATIONS</h2>
+        </div>
+        
+        <div class="locations-content">
+          <!-- Location Card 1 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(40.7589, -73.9851, 'Nenuya Centre, Elia Street, New York, NY, USA')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6738!2d-73.9851!3d40.7589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ1JzMyLjAiTiA3M8KwNTknMDYuNCJX!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">New York Office</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Nenuya Centre<br>Elia Street<br>New York, USA</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+18746983255">+1 874 698 3255</a>
+                <a href="mailto:ny@helo.com">ny@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 2 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(51.5074, -0.1278, 'Westminster Plaza, Oxford Street, London, UK')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.8!2d-0.1278!3d51.5074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTHCsDMwJzI2LjYiTiAwwrAwNyc0MC4xIlc!!5e0!3m2!1sen!2suk!4v1600000000000!5m2!1sen!2suk"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">London Branch</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Westminster Plaza<br>Oxford Street<br>London, UK</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+442071234567">+44 207 123 4567</a>
+                <a href="mailto:london@helo.com">london@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 3 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(35.6762, 139.6503, 'Shibuya Center, Shibuya District, Tokyo, Japan')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.2!2d139.6503!3d35.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQwJzM0LjMiTiAxMznCsDM5JzAxLjEiRQ!!5e0!3m2!1sen!2sjp!4v1600000000000!5m2!1sen!2sjp"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">Tokyo Studio</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Shibuya Center<br>Shibuya District<br>Tokyo, Japan</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+81312345678">+81 3 1234 5678</a>
+                <a href="mailto:tokyo@helo.com">tokyo@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 4 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(52.5200, 13.4050, 'Mitte Quarter, Friedrichstraße, Berlin, Germany')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.1!2d13.4050!3d52.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDMxJzEyLjAiTiAxM8KwMjQnMTguMCJF!5e0!3m2!1sen!2sde!4v1600000000000!5m2!1sen!2sde"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">Berlin Hub</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Mitte Quarter<br>Friedrichstraße<br>Berlin, Germany</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+4930123456">+49 30 123 456</a>
+                <a href="mailto:berlin@helo.com">berlin@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 5 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(-33.8688, 151.2093, 'Harbour Bridge Plaza, Circular Quay, Sydney, Australia')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.9!2d151.2093!3d-33.8688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUyJzA3LjciUyAxNTHCsDEyJzMzLjUiRQ!!5e0!3m2!1sen!2sau!4v1600000000000!5m2!1sen!2sau"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">Sydney Office</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Harbour Bridge Plaza<br>Circular Quay<br>Sydney, Australia</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+61298765432">+61 2 9876 5432</a>
+                <a href="mailto:sydney@helo.com">sydney@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 6 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(25.2048, 55.2708, 'Business Bay Tower, Sheikh Zayed Road, Dubai, UAE')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.2!2d55.2708!3d25.2048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDEyJzE3LjMiTiA1NcKwMTYnMTQuOSJF!5e0!3m2!1sen!2sae!4v1600000000000!5m2!1sen!2sae"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">Dubai Branch</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>Business Bay Tower<br>Sheikh Zayed Road<br>Dubai, UAE</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+97143456789">+971 4 345 6789</a>
+                <a href="mailto:dubai@helo.com">dubai@helo.com</a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Location Card 7 -->
+          <div class="location-card">
+            <div class="mini-map" onclick="openGoogleMaps(43.6426, -79.3871, 'CN Tower District, Front Street West, Toronto, Canada')">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.3!2d-79.3871!3d43.6426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM4JzMzLjQiTiA3OcKwMjMnMTMuNiJX!5e0!3m2!1sen!2sca!4v1600000000000!5m2!1sen!2sca"
+                width="100%" 
+                height="120" 
+                style="border:0; border-radius: 8px;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <div class="map-overlay">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 9C11.1 9 12 8.1 12 7C12 5.9 11.1 5 10 5C8.9 5 8 5.9 8 7C8 8.1 8.9 9 10 9Z" fill="white"/>
+                  <path d="M10 2C6.13 2 3 5.13 3 9C3 14.25 10 18 10 18C10 18 17 14.25 17 9C17 5.13 13.87 2 10 2Z" stroke="white" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="location-title">Toronto Studio</h3>
+            <div class="location-info">
+              <div class="location-address">
+                <p>CN Tower District<br>Front Street West<br>Toronto, Canada</p>
+              </div>
+              <div class="location-contact">
+                <a href="tel:+14165551234">+1 416 555 1234</a>
+                <a href="mailto:toronto@helo.com">toronto@helo.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <MobileSidebar />
+</BaseLayout>
+
+<style>
+  .contact-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  
+  /* Contact Hero */
+  .contact-hero {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 120px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .contact-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .hero-text {
+    flex: 1;
+    max-width: 700px;
+  }
+  
+  .contact-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 40px 0;
+  }
+  
+  .contact-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0 0 60px 0;
+  }
+  
+  .contact-highlights {
+    display: flex;
+    gap: 50px;
+  }
+  
+  .highlight-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .highlight-number {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1;
+    color: #000000;
+  }
+  
+  .highlight-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .hero-image {
+    flex-shrink: 0;
+  }
+  
+  .contact-hero-image {
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Contact Form Section */
+  .contact-form-section {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .form-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .form-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 20px 0;
+  }
+  
+  .form-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0;
+  }
+  
+  .contact-form {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #121212;
+    border-radius: 16px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .form-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #121212;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #121212;
+    background: #FFFFFF;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: #121212;
+    box-shadow: 0 0 0 3px rgba(18, 18, 18, 0.1);
+  }
+  
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+  
+  .form-submit {
+    background: transparent;
+    color: #121212;
+    border: 2px solid #121212;
+    padding: 18px 40px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    align-self: center;
+    margin-top: 20px;
+    padding-bottom: 26px;
+  }
+  
+  .submit-underline {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: #121212;
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
+  
+  .form-submit:hover {
+    background: #121212;
+    color: #FFFFFF;
+  }
+  
+  .form-submit:hover .submit-underline {
+    transform: translateX(-50%) scaleX(3);
+  }
+  
+  /* Locations Section */
+  .locations {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 80px 30px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  /* Section Header */
+  .locations-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .locations-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .locations-content {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    max-width: 100%;
+  }
+  
+  .location-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #121212;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 380px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .location-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mini-map {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  .mini-map:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mini-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+  
+  .mini-map:hover .map-overlay {
+    opacity: 1;
+  }
+  
+  .location-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+    border-bottom: 2px solid #121212;
+    padding-bottom: 10px;
+  }
+  
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+  }
+  
+  .location-address {
+    flex: 1;
+  }
+  
+  .location-address p {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #444444;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .location-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  
+  .location-contact a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.3;
+    color: #121212;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.3s ease;
+    padding: 4px 0;
+  }
+  
+  .location-contact a:hover {
+    color: #666666;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1400px) {
+    .contact-hero-content {
+      gap: 60px;
+    }
+    
+    .contact-title {
+      font-size: 56px;
+    }
+    
+    .locations-title {
+      font-size: 54px;
+    }
+    
+    .locations-content {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    
+    .location-card {
+      padding: 20px 15px;
+      min-height: 350px;
+    }
+    
+    .mini-map {
+      height: 100px;
+    }
+    
+    .location-title {
+      font-size: 16px;
+    }
+    
+    .location-address p {
+      font-size: 13px;
+    }
+    
+    .location-contact a {
+      font-size: 11px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .contact-hero,
+    .contact-form-section,
+    .locations {
+      padding: 80px 40px;
+    }
+    
+    .contact-hero-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 50px;
+    }
+    
+    .locations-title {
+      font-size: 48px;
+    }
+    
+    .locations-content {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    
+    .location-card {
+      padding: 25px 20px;
+      min-height: 360px;
+    }
+    
+    .mini-map {
+      height: 110px;
+    }
+    
+    .location-title {
+      font-size: 18px;
+    }
+    
+    .location-address p {
+      font-size: 14px;
+    }
+    
+    .location-contact a {
+      font-size: 12px;
+    }
+    
+    .contact-highlights {
+      justify-content: center;
+      gap: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-hero,
+    .contact-form-section,
+    .locations {
+      padding: 60px 30px;
+    }
+    
+    .contact-title {
+      font-size: 42px;
+    }
+    
+    .form-title {
+      font-size: 36px;
+    }
+    
+    .locations-title {
+      font-size: 42px;
+    }
+    
+    .locations-content {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    
+    .location-card {
+      padding: 20px 15px;
+      min-height: 320px;
+    }
+    
+    .mini-map {
+      height: 100px;
+    }
+    
+    .contact-form {
+      padding: 40px 30px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .contact-highlights {
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contact-hero,
+    .contact-form-section,
+    .locations {
+      padding: 40px 20px;
+    }
+    
+    .contact-title {
+      font-size: 32px;
+    }
+    
+    .form-title {
+      font-size: 28px;
+    }
+    
+    .locations-title {
+      font-size: 32px;
+      letter-spacing: 1px;
+    }
+    
+    .locations-content {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .location-card {
+      padding: 20px 15px;
+      min-height: 300px;
+    }
+    
+    .mini-map {
+      height: 90px;
+    }
+    
+    .location-title {
+      font-size: 16px;
+    }
+    
+    .location-address p {
+      font-size: 13px;
+    }
+    
+    .location-contact a {
+      font-size: 11px;
+    }
+    
+    .contact-form {
+      padding: 30px 25px;
+    }
+  }
+</style>
+
+<script>
+  // Google Maps function
+  function openGoogleMaps(lat, lng, address) {
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(address)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+  
+  // Make function globally available
+  window.openGoogleMaps = openGoogleMaps;
+</script>

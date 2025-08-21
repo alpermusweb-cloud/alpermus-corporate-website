@@ -1,0 +1,809 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileSidebar from '../components/layout/MobileSidebar.astro';
+import { Image } from 'astro:assets';
+import teamImage from '/public/images/full-img.jpg';
+import featuresImage from '/public/images/features-a.jpg';
+---
+
+<BaseLayout title="About Us | Helo Creative Agency - Our Story & Mission">
+  <Header />
+  <main class="about-page">
+    <!-- About Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-content">
+          <div class="hero-text">
+            <h1 class="about-title">
+              We are Helo—<br>
+              creative minds behind<br>
+              digital excellence
+            </h1>
+            
+            <p class="about-description">
+              Founded with a vision to transform brands through innovative design and cutting-edge technology, we've grown into a global creative agency with offices across seven major cities.
+            </p>
+            
+            <a href="/contact" class="about-cta-link">
+              GET IN TOUCH
+              <div class="about-cta-underline"></div>
+            </a>
+          </div>
+          
+          <div class="hero-image">
+            <Image 
+              src={featuresImage} 
+              alt="Our creative team at work" 
+              width={400} 
+              height={550}
+              class="about-hero-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+      <div class="container">
+        <div class="mission-vision-content">
+          <div class="mission-section">
+            <h2 class="section-title">Our Mission</h2>
+            <p class="section-text">
+              To create digital stars in the universe by delivering exceptional creative solutions that sharpen brand value and drive meaningful connections between businesses and their audiences.
+            </p>
+          </div>
+          
+          <div class="vision-section">
+            <h2 class="section-title">Our Vision</h2>
+            <p class="section-text">
+              To be the leading global creative agency that transforms ideas into impactful digital experiences, setting new standards for innovation and excellence in the creative industry.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <div class="values-content">
+          <h2 class="values-title">Our Core Values</h2>
+          
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <h3 class="value-title">Innovation</h3>
+              <p class="value-description">
+                We constantly push boundaries and explore new technologies to deliver cutting-edge solutions that exceed expectations.
+              </p>
+            </div>
+            
+            <div class="value-card">
+              <div class="value-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="M20 8V12M32 20H28M20 32V28M8 20H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="value-title">Excellence</h3>
+              <p class="value-description">
+                Quality is at the heart of everything we do. We strive for perfection in every project, no matter the size or complexity.
+              </p>
+            </div>
+            
+            <div class="value-card">
+              <div class="value-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <rect x="8" y="6" width="24" height="28" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <rect x="12" y="10" width="16" height="2" rx="1" fill="currentColor"/>
+                  <rect x="12" y="14" width="12" height="2" rx="1" fill="currentColor"/>
+                </svg>
+              </div>
+              <h3 class="value-title">Collaboration</h3>
+              <p class="value-description">
+                We believe in the power of teamwork and close partnership with our clients to achieve extraordinary results together.
+              </p>
+            </div>
+            
+            <div class="value-card">
+              <div class="value-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                  <circle cx="20" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path d="M8 32V28C8 24 12 20 20 20C28 20 32 24 32 28V32" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <h3 class="value-title">Integrity</h3>
+              <p class="value-description">
+                Transparency, honesty, and ethical practices guide every decision we make and every relationship we build.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Team Overview Section -->
+    <section class="team-overview">
+      <div class="container">
+        <div class="team-overview-content">
+          <div class="team-text">
+            <h2 class="team-overview-title">
+              Meet the creative minds<br>
+              shaping the future of<br>
+              digital experiences
+            </h2>
+            
+            <p class="team-overview-description">
+              Our diverse team of designers, developers, strategists, and creative thinkers work together across seven global offices to bring your vision to life. With expertise spanning multiple industries and cultures, we deliver solutions that resonate on a global scale.
+            </p>
+            
+            <div class="team-stats">
+              <div class="stat-item">
+                <span class="stat-number">150+</span>
+                <span class="stat-label">Creative Professionals</span>
+              </div>
+              
+              <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">Global Offices</span>
+              </div>
+              
+              <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Successful Projects</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-image">
+            <Image 
+              src={teamImage} 
+              alt="Our global team collaboration" 
+              width={600} 
+              height={400}
+              class="team-overview-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Global Presence Section -->
+    <section class="global-presence">
+      <div class="container">
+        <div class="presence-content">
+          <h2 class="presence-title">Our Global Network</h2>
+          <p class="presence-description">
+            With offices strategically located across major business hubs, we provide local expertise with global perspective. Each location specializes in specific services while maintaining our unified standard of excellence.
+          </p>
+          
+          <div class="offices-grid">
+            <div class="office-item">
+              <span class="office-number">01</span>
+              <div class="office-info">
+                <h3 class="office-city">New York</h3>
+                <p class="office-specialty">Development & Strategy Hub</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">02</span>
+              <div class="office-info">
+                <h3 class="office-city">London</h3>
+                <p class="office-specialty">European Design Center</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">03</span>
+              <div class="office-info">
+                <h3 class="office-city">Tokyo</h3>
+                <p class="office-specialty">Asia Pacific Innovation</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">04</span>
+              <div class="office-info">
+                <h3 class="office-city">Berlin</h3>
+                <p class="office-specialty">Technology & UX Lab</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">05</span>
+              <div class="office-info">
+                <h3 class="office-city">Sydney</h3>
+                <p class="office-specialty">Data & Analytics Center</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">06</span>
+              <div class="office-info">
+                <h3 class="office-city">Dubai</h3>
+                <p class="office-specialty">Middle East Operations</p>
+              </div>
+            </div>
+            
+            <div class="office-item">
+              <span class="office-number">07</span>
+              <div class="office-info">
+                <h3 class="office-city">Toronto</h3>
+                <p class="office-specialty">Social Media Excellence</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="presence-cta">
+            <a href="/works" class="presence-link">
+              EXPLORE OUR OFFICES
+              <div class="presence-underline"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <MobileSidebar />
+</BaseLayout>
+
+<style>
+  .about-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  
+  /* About Hero */
+  .about-hero {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 120px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .about-hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .hero-text {
+    flex: 1;
+    max-width: 700px;
+  }
+  
+  .about-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 40px 0;
+  }
+  
+  .about-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0 0 50px 0;
+  }
+  
+  .about-cta-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.45;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+  
+  .about-cta-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #000000;
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .about-cta-link:hover .about-cta-underline {
+    transform: scaleX(4);
+  }
+  
+  .hero-image {
+    flex-shrink: 0;
+  }
+  
+  .about-hero-image {
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mission & Vision */
+  .mission-vision {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .mission-vision-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .mission-section,
+  .vision-section {
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #121212;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .mission-section:hover,
+  .vision-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 30px 0;
+  }
+  
+  .section-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333333;
+    margin: 0;
+  }
+  
+  /* Values Section */
+  .values-section {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .values-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .values-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 80px 0;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  
+  .value-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #121212;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  .value-icon {
+    width: 60px;
+    height: 60px;
+    color: #121212;
+    transition: transform 0.3s ease;
+  }
+  
+  .value-card:hover .value-icon {
+    transform: scale(1.1);
+  }
+  
+  .value-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0;
+  }
+  
+  .value-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0;
+    flex: 1;
+  }
+  
+  /* Team Overview */
+  .team-overview {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .team-overview-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .team-text {
+    flex: 1;
+    max-width: 700px;
+  }
+  
+  .team-overview-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 40px 0;
+  }
+  
+  .team-overview-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.7;
+    color: #444444;
+    margin: 0 0 60px 0;
+  }
+  
+  .team-stats {
+    display: flex;
+    gap: 60px;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1;
+    color: #000000;
+  }
+  
+  .stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .team-image {
+    flex-shrink: 0;
+  }
+  
+  .team-overview-image {
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Global Presence */
+  .global-presence {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    overflow: hidden;
+  }
+  
+  .presence-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .presence-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 30px 0;
+  }
+  
+  .presence-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0 0 80px 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+  }
+  
+  .offices-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+  
+  .office-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #121212;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .office-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .office-number {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .office-info {
+    text-align: center;
+  }
+  
+  .office-city {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 8px 0;
+  }
+  
+  .office-specialty {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #666666;
+    margin: 0;
+  }
+  
+  .presence-cta {
+    text-align: center;
+  }
+  
+  .presence-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.45;
+    text-transform: uppercase;
+    color: #000000;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+  
+  .presence-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #000000;
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .presence-link:hover .presence-underline {
+    transform: scaleX(6);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1400px) {
+    .about-hero-content,
+    .team-overview-content {
+      gap: 60px;
+    }
+    
+    .about-title,
+    .team-overview-title {
+      font-size: 56px;
+    }
+    
+    .offices-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .about-hero,
+    .mission-vision,
+    .values-section,
+    .team-overview,
+    .global-presence {
+      padding: 80px 40px;
+    }
+    
+    .about-hero-content,
+    .team-overview-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 50px;
+    }
+    
+    .mission-vision-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    
+    .offices-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .team-stats {
+      justify-content: center;
+      gap: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-hero,
+    .mission-vision,
+    .values-section,
+    .team-overview,
+    .global-presence {
+      padding: 60px 30px;
+    }
+    
+    .about-title,
+    .team-overview-title {
+      font-size: 42px;
+    }
+    
+    .section-title {
+      font-size: 36px;
+    }
+    
+    .values-title,
+    .presence-title {
+      font-size: 48px;
+    }
+    
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .offices-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .team-stats {
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-hero,
+    .mission-vision,
+    .values-section,
+    .team-overview,
+    .global-presence {
+      padding: 40px 20px;
+    }
+    
+    .about-title,
+    .team-overview-title {
+      font-size: 32px;
+    }
+    
+    .section-title {
+      font-size: 28px;
+    }
+    
+    .values-title,
+    .presence-title {
+      font-size: 36px;
+    }
+    
+    .offices-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .mission-section,
+    .vision-section,
+    .value-card {
+      padding: 30px 25px;
+    }
+  }
+</style>

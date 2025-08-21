@@ -1,0 +1,429 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileSidebar from '../components/layout/MobileSidebar.astro';
+
+// Get all locations
+const allLocations = await getCollection('locations');
+// Take first 7 locations for the grid
+const locations = allLocations.slice(0, 7);
+---
+
+<BaseLayout title="Works | Our Global Locations - Helo Creative Agency">
+  <Header />
+  <main class="works-page">
+    <!-- Works Hero Section -->
+    <section class="works-hero">
+      <div class="container">
+        <div class="works-hero-content">
+          <h1 class="works-title">Our Global Presence</h1>
+          <p class="works-description">
+            Discover our worldwide network of creative studios and offices, each specializing in unique services and bringing local expertise to global solutions.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Locations Grid -->
+    <section class="locations-grid">
+      <div class="container">
+        <div class="grid-content">
+          <!-- First Row - 4 Cards -->
+          <div class="grid-row grid-row-4">
+            {locations.slice(0, 4).map((location) => (
+              <article class="location-card">
+                <a href={`/locations/${location.slug}`} class="location-link">
+                  <div class="location-image">
+                    <img 
+                      src="/images/creative-agency-110551.webp" 
+                      alt={`${location.data.city} ${location.data.branch}`}
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                    />
+                    
+
+                  </div>
+                  
+                  <div class="location-info">
+                    <div class="location-header">
+                      <h2 class="location-title">{location.data.city}</h2>
+                      <h3 class="location-branch">{location.data.branch}</h3>
+                    </div>
+                    
+                    <div class="location-cta">
+                      <span class="cta-text">View Details</span>
+                      <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M8 3L13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+          
+          <!-- Second Row - 3 Cards (Centered) -->
+          <div class="grid-row grid-row-3">
+            {locations.slice(4, 7).map((location) => (
+              <article class="location-card">
+                <a href={`/locations/${location.slug}`} class="location-link">
+                  <div class="location-image">
+                    <img 
+                      src="/images/creative-agency-110551.webp" 
+                      alt={`${location.data.city} ${location.data.branch}`}
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                    />
+                    
+
+                  </div>
+                  
+                  <div class="location-info">
+                    <div class="location-header">
+                      <h2 class="location-title">{location.data.city}</h2>
+                      <h3 class="location-branch">{location.data.branch}</h3>
+                    </div>
+                    
+                    <div class="location-cta">
+                      <span class="cta-text">View Details</span>
+                      <svg class="cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M8 3L13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <MobileSidebar />
+</BaseLayout>
+
+<style>
+  .works-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+  }
+  
+  /* Works Hero */
+  .works-hero {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 120px 30px 80px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    text-align: center;
+  }
+  
+  .works-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .works-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 80px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 30px 0;
+  }
+  
+  .works-description {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0;
+  }
+  
+  /* Locations Grid */
+  .locations-grid {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 80px 30px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+  }
+  
+  .grid-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .grid-row {
+    display: grid;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  .grid-row-4 {
+    grid-template-columns: repeat(4, 300px);
+    justify-content: center;
+  }
+  
+  .grid-row-3 {
+    grid-template-columns: repeat(3, 300px);
+    justify-content: center;
+  }
+  
+  .location-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #121212;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    height: 480px;
+    width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .location-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  .location-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .location-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  
+  .location-card:hover .location-image img {
+    transform: scale(1.08);
+  }
+  
+
+  
+  .location-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 180px;
+    flex: 1;
+    position: relative;
+  }
+  
+  .location-header {
+    margin-bottom: 30px;
+  }
+  
+  .location-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+    color: #000000;
+    margin: 0 0 5px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .location-branch {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666666;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+
+  
+  .location-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 15px;
+    left: 25px;
+    right: 25px;
+    height: 40px;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .cta-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #121212;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .cta-arrow {
+    transition: transform 0.3s ease;
+    color: #121212;
+  }
+  
+  .location-card:hover .cta-arrow {
+    transform: translateX(5px);
+  }
+  
+  /* Responsive */
+  @media (max-width: 1400px) {
+    .grid-row-4 {
+      grid-template-columns: repeat(4, 280px);
+    }
+    
+    .grid-row-3 {
+      grid-template-columns: repeat(3, 280px);
+    }
+    
+    .location-card {
+      width: 280px;
+      height: 460px;
+    }
+    
+    .location-image {
+      height: 280px;
+    }
+    
+    .location-info {
+      height: 180px;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .grid-row-4 {
+      grid-template-columns: repeat(2, 320px);
+    }
+    
+    .grid-row-3 {
+      grid-template-columns: repeat(2, 320px);
+    }
+    
+    .works-title {
+      font-size: 64px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .works-hero {
+      padding: 80px 20px 50px;
+    }
+    
+    .locations-grid {
+      padding: 50px 20px;
+    }
+    
+    .grid-content {
+      align-items: center;
+    }
+    
+    .grid-row-4,
+    .grid-row-3 {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+    
+    .location-card {
+      width: 100%;
+      max-width: 320px;
+      height: 480px;
+      margin: 0 auto;
+    }
+    
+    .location-image {
+      height: 300px;
+    }
+    
+    .location-info {
+      height: 180px;
+    }
+    
+    .works-title {
+      font-size: 48px;
+    }
+    
+    .works-description {
+      font-size: 18px;
+    }
+    
+    .location-title {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .works-hero {
+      padding: 60px 15px 40px;
+    }
+    
+    .locations-grid {
+      padding: 40px 15px;
+    }
+    
+    .grid-row-4,
+    .grid-row-3 {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    .location-card {
+      max-width: 300px;
+      height: 460px;
+    }
+    
+    .location-image {
+      height: 280px;
+    }
+    
+    .works-title {
+      font-size: 36px;
+    }
+    
+    .works-description {
+      font-size: 16px;
+    }
+    
+    .location-info {
+      padding: 20px;
+      height: 180px;
+    }
+    
+    .location-title {
+      font-size: 22px;
+    }
+  }
+</style>

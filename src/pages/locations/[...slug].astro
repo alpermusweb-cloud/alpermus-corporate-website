@@ -1,0 +1,1207 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import MobileSidebar from '../../components/layout/MobileSidebar.astro';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map((location) => ({
+    params: { slug: location.slug },
+    props: { location },
+  }));
+}
+
+type Props = {
+  location: CollectionEntry<'locations'>;
+};
+
+const { location } = Astro.props;
+const { Content } = await location.render();
+---
+
+<BaseLayout 
+  title={location.data.seo.title}
+  description={location.data.seo.description}
+  image={location.data.seo.image}
+>
+  <Header />
+  <main class="location-page">
+    <!-- Location Hero -->
+    <section class="location-hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="breadcrumbs">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/works">Works</a>
+            <span>/</span>
+            <span>{location.data.city}</span>
+          </div>
+          
+          <h1 class="location-title">{location.data.city} {location.data.branch}</h1>
+          <p class="location-subtitle">
+            Specialized in {location.data.sectorRefs.map(sector => sector.replace('-', ' ')).join(', ')}
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Location Details -->
+    <section class="location-details">
+      <div class="container">
+        <div class="details-grid">
+          <!-- Left Column - Content -->
+          <div class="content-column">
+            <div class="location-content">
+              <Content />
+            </div>
+            
+            <!-- Services List -->
+            <div class="services-section">
+              <h3 class="services-title">Our Services</h3>
+              <div class="services-list">
+                {location.data.sectorRefs.map((sector) => (
+                  <div class="service-item">
+                    <span class="service-name">{sector.replace('-', ' ')}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column - Info & Map -->
+          <div class="info-column">
+            <!-- Contact Info -->
+            <div class="contact-info">
+              <h3 class="info-title">Contact Information</h3>
+              
+              <div class="info-item">
+                <strong>Address:</strong>
+                <p>{location.data.address}</p>
+              </div>
+              
+              {location.data.phone && (
+                <div class="info-item">
+                  <strong>Phone:</strong>
+                  <a href={`tel:${location.data.phone}`}>{location.data.phone}</a>
+                </div>
+              )}
+              
+              {location.data.email && (
+                <div class="info-item">
+                  <strong>Email:</strong>
+                  <a href={`mailto:${location.data.email}`}>{location.data.email}</a>
+                </div>
+              )}
+            </div>
+            
+            <!-- Working Hours -->
+            {location.data.hours && (
+              <div class="hours-info">
+                <h3 class="info-title">Working Hours</h3>
+                <div class="hours-list">
+                  {location.data.hours.map((hour) => (
+                    <div class="hour-item">
+                      <span class="day">{hour.day}:</span>
+                      <span class="time">
+                        {hour.open === 'Closed' ? 'Closed' : `${hour.open} - ${hour.close}`}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            <!-- Google Maps -->
+            {location.data.coords && (
+              <div class="map-section">
+                <h3 class="info-title">Location Map</h3>
+                <div class="map-container">
+                  <iframe
+                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${location.data.coords.lat},${location.data.coords.lng}`}
+                    width="100%"
+                    height="300"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+                
+                <a 
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${location.data.coords.lat},${location.data.coords.lng}`}
+                  target="_blank"
+                  rel="noopener"
+                  class="directions-btn"
+                >
+                  Get Directions
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section class="location-gallery">
+      <div class="container">
+        <h3 class="gallery-title">Gallery</h3>
+        <div class="gallery-container">
+          <div class="gallery-grid" id="gallery-grid">
+            <!-- Initial images (first 6) -->
+            {Array.from({length: 12}).map((_, index) => (
+              <div class="gallery-item" data-index={index} onclick={`openLightbox(${index})`}>
+                <img 
+                  src="/images/creative-agency-110551.webp" 
+                  alt={`${location.data.city} office ${index + 1}`}
+                  width="400"
+                  height="300"
+                  loading={index < 6 ? "eager" : "lazy"}
+                  class="gallery-image"
+                />
+                
+                <!-- Click indicator -->
+                <div class="click-indicator">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 3H6C4.89 3 4 3.89 4 5V19C4 20.11 4.89 21 6 21H18C19.11 21 20 20.11 20 19V8L15 3Z" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.2)"/>
+                    <path d="M15 3V8H20" stroke="white" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Lightbox Modal -->
+          <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+              <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              
+              <img id="lightbox-image" src="" alt="" class="lightbox-image">
+              
+              <!-- Navigation arrows -->
+              <button class="lightbox-nav lightbox-prev" onclick="previousImage()" aria-label="Previous">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              
+              <button class="lightbox-nav lightbox-next" onclick="nextImage()" aria-label="Next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Loading indicator -->
+          <div class="loading-indicator" id="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <span>Loading more images...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <MobileSidebar />
+</BaseLayout>
+
+<style>
+  .location-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Location Hero */
+  .location-hero {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 100px 30px 60px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+  }
+  
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .breadcrumbs {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 30px;
+  }
+  
+  .breadcrumbs a {
+    color: #121212;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbs a:hover {
+    color: #666666;
+  }
+  
+  .breadcrumbs span {
+    margin: 0 10px;
+  }
+  
+  .location-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 1.1;
+    color: #000000;
+    margin: 0 0 20px 0;
+  }
+  
+  .location-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #444444;
+    margin: 0;
+  }
+  
+  /* Location Details */
+  .location-details {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 80px 30px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .content-column {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  
+  .location-content {
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.8;
+    color: #333333;
+    font-size: 16px;
+  }
+  
+  .location-content h1,
+  .location-content h2,
+  .location-content h3 {
+    font-family: 'Syne', sans-serif;
+    color: #000000;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    line-height: 1.3;
+  }
+  
+  .location-content h1 {
+    font-size: 48px;
+    margin-top: 0;
+  }
+  
+  .location-content h2 {
+    font-size: 36px;
+  }
+  
+  .location-content h3 {
+    font-size: 28px;
+  }
+  
+  .location-content p {
+    margin-bottom: 25px;
+    line-height: 1.8;
+  }
+  
+  .location-content ul {
+    margin: 30px 0;
+    padding-left: 30px;
+    margin-left: 10px;
+  }
+  
+  .location-content li {
+    margin-bottom: 15px;
+    line-height: 1.7;
+    padding-left: 5px;
+  }
+  
+  /* Services Section */
+  .services-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #121212;
+    border-radius: 12px;
+    padding: 40px;
+  }
+  
+  .services-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: #000000;
+    margin: 0 0 30px 0;
+  }
+  
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .service-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .service-item:last-child {
+    border-bottom: none;
+  }
+  
+  .service-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+    text-transform: capitalize;
+    line-height: 1.4;
+  }
+  
+  /* Info Column */
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .contact-info,
+  .hours-info,
+  .map-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #121212;
+    border-radius: 12px;
+    padding: 30px;
+  }
+  
+  .info-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+    margin: 0 0 20px 0;
+  }
+  
+  .info-item {
+    margin-bottom: 15px;
+  }
+  
+  .info-item strong {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #121212;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .info-item p,
+  .info-item a {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #444444;
+    margin: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .info-item a:hover {
+    color: #121212;
+  }
+  
+  /* Hours */
+  .hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .hour-item {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+  
+  .day {
+    font-weight: 500;
+    color: #121212;
+  }
+  
+  .time {
+    font-weight: 400;
+    color: #444444;
+  }
+  
+  /* Map */
+  .map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .directions-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #121212;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .directions-btn:hover {
+    background: #333333;
+  }
+  
+  /* Gallery */
+  .location-gallery {
+    background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
+    padding: 80px 30px;
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+  }
+  
+  .gallery-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    color: #000000;
+    text-align: center;
+    margin: 0 0 60px 0;
+  }
+  
+  .gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* 4:3 aspect ratio */
+  }
+  
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+    .gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+  }
+  
+  .gallery-item {
+    cursor: pointer;
+  }
+  
+  /* Click Indicator */
+  .click-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 12px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .gallery-item:hover .click-indicator {
+    opacity: 1;
+  }
+  
+  /* Lightbox Styles */
+  .lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+  }
+  
+  .lightbox-close:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+  }
+  
+
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .lightbox-prev {
+    left: 20px;
+  }
+  
+  .lightbox-next {
+    right: 20px;
+  }
+  
+  /* Mobile lightbox adjustments */
+  @media (max-width: 768px) {
+    .lightbox-close {
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+    }
+    
+    .lightbox-nav {
+      width: 44px;
+      height: 44px;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    
+    .lightbox-nav:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .lightbox-prev {
+      left: 10px;
+    }
+    
+    .lightbox-next {
+      right: 10px;
+    }
+    
+    .lightbox-content {
+      max-width: 95vw;
+      max-height: 95vh;
+    }
+    
+    .lightbox-image {
+      max-height: 70vh;
+      border-radius: 8px;
+    }
+  }
+
+  /* Loading Indicator */
+  .loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #666666;
+  }
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f0f0f0;
+    border-top: 2px solid #121212;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    
+    .location-title {
+      font-size: 56px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .location-hero {
+      padding: 100px 30px 60px;
+    }
+    
+    .location-details {
+      padding: 80px 30px;
+    }
+    
+    .location-gallery {
+      padding: 80px 30px;
+    }
+    
+    .details-grid {
+      gap: 80px;
+    }
+    
+    .content-column {
+      gap: 80px;
+    }
+    
+    .info-column {
+      gap: 60px;
+    }
+    
+    .location-content h1,
+    .location-content h2,
+    .location-content h3 {
+      margin-top: 60px;
+      margin-bottom: 30px;
+    }
+    
+    .location-content p {
+      margin-bottom: 30px;
+      font-size: 17px;
+    }
+    
+    .location-content ul {
+      margin: 40px 0;
+      padding-left: 35px;
+      margin-left: 15px;
+    }
+    
+    .location-content li {
+      margin-bottom: 20px;
+      padding-left: 8px;
+    }
+    
+    .gallery-title {
+      font-size: 42px;
+      margin-bottom: 40px;
+    }
+    
+    /* Mobile Gallery Slider */
+    .gallery-container {
+      position: relative;
+    }
+    
+    .gallery-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 0 20px 20px 20px;
+      margin: 0 -20px 20px -20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .gallery-grid::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .gallery-grid::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
+    }
+    
+    .gallery-grid::-webkit-scrollbar-thumb {
+      background: #121212;
+      border-radius: 2px;
+    }
+    
+    .gallery-item {
+      flex: 0 0 280px;
+      width: 280px;
+      height: 210px;
+      padding-bottom: 0;
+      scroll-snap-align: start;
+    }
+    
+    .gallery-image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .location-title {
+      font-size: 42px;
+    }
+    
+    .location-subtitle {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .location-hero {
+      padding: 80px 20px 50px;
+    }
+    
+    .location-details {
+      padding: 60px 20px;
+    }
+    
+    .location-gallery {
+      padding: 60px 20px;
+    }
+    
+    .details-grid {
+      gap: 60px;
+    }
+    
+    .content-column {
+      gap: 60px;
+    }
+    
+    .info-column {
+      gap: 40px;
+    }
+    
+    .location-content p {
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+    
+    .location-content h2 {
+      font-size: 28px;
+    }
+    
+    .location-content h3 {
+      font-size: 24px;
+    }
+    
+    .gallery-item {
+      flex: 0 0 250px;
+      width: 250px;
+      height: 180px;
+    }
+    
+    .location-title {
+      font-size: 32px;
+    }
+    
+    .location-subtitle {
+      font-size: 16px;
+    }
+    
+    .gallery-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+    
+    .contact-info,
+    .hours-info,
+    .map-section,
+    .services-section {
+      padding: 25px;
+    }
+  }
+</style>
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `Helo ${location.data.city} ${location.data.branch}`,
+  "description": location.data.seo.description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": location.data.address
+  },
+  "telephone": location.data.phone,
+  "email": location.data.email,
+  "url": `https://helo-agency.com/locations/${location.slug}`,
+  "image": location.data.images,
+  "geo": location.data.coords ? {
+    "@type": "GeoCoordinates",
+    "latitude": location.data.coords.lat,
+    "longitude": location.data.coords.lng
+  } : undefined,
+  "openingHours": location.data.hours?.map(hour => 
+    hour.open === 'Closed' ? null : `${hour.day.substring(0,2)} ${hour.open}-${hour.close}`
+  ).filter(Boolean)
+}
+</script>
+
+<!-- Gallery Infinite Scroll & Lightbox Script -->
+<script>
+  let currentImageCount = 12;
+  let isLoading = false;
+  const maxImages = 24; // Maximum images to load
+  let currentLightboxIndex = 0;
+  
+  function createGalleryItem(index) {
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
+    galleryItem.setAttribute('data-index', index.toString());
+    
+    // Apply container styles explicitly
+    galleryItem.style.borderRadius = '12px';
+    galleryItem.style.overflow = 'hidden';
+    galleryItem.style.transition = 'all 0.3s ease';
+    galleryItem.style.position = 'relative';
+    galleryItem.style.width = '100%';
+    galleryItem.style.height = '0';
+    galleryItem.style.paddingBottom = '75%';
+    
+    // Create image element properly
+    const img = document.createElement('img');
+    img.src = '/images/creative-agency-110551.webp';
+    img.alt = `Office image ${index + 1}`;
+    img.width = 400;
+    img.height = 300;
+    img.loading = 'lazy';
+    img.className = 'gallery-image';
+    
+    // Apply image styles explicitly
+    img.style.position = 'absolute';
+    img.style.top = '0';
+    img.style.left = '0';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.display = 'block';
+    img.style.transition = 'transform 0.3s ease';
+    
+    // Add click indicator
+    const clickIndicator = document.createElement('div');
+    clickIndicator.className = 'click-indicator';
+    clickIndicator.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15 3H6C4.89 3 4 3.89 4 5V19C4 20.11 4.89 21 6 21H18C19.11 21 20 20.11 20 19V8L15 3Z" stroke="white" stroke-width="2" fill="rgba(255,255,255,0.2)"/>
+        <path d="M15 3V8H20" stroke="white" stroke-width="2"/>
+      </svg>
+    `;
+    
+    // Apply click indicator styles
+    clickIndicator.style.position = 'absolute';
+    clickIndicator.style.top = '50%';
+    clickIndicator.style.left = '50%';
+    clickIndicator.style.transform = 'translate(-50%, -50%)';
+    clickIndicator.style.opacity = '0';
+    clickIndicator.style.transition = 'opacity 0.3s ease';
+    clickIndicator.style.background = 'rgba(0, 0, 0, 0.5)';
+    clickIndicator.style.borderRadius = '50%';
+    clickIndicator.style.padding = '12px';
+    clickIndicator.style.backdropFilter = 'blur(10px)';
+    
+    // Add event listeners
+    galleryItem.addEventListener('mouseenter', () => {
+      galleryItem.style.transform = 'translateY(-5px)';
+      galleryItem.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+      img.style.transform = 'scale(1.05)';
+      clickIndicator.style.opacity = '1';
+    });
+    
+    galleryItem.addEventListener('mouseleave', () => {
+      galleryItem.style.transform = 'translateY(0)';
+      galleryItem.style.boxShadow = 'none';
+      img.style.transform = 'scale(1)';
+      clickIndicator.style.opacity = '0';
+    });
+    
+    galleryItem.addEventListener('click', () => {
+      openLightbox(index);
+    });
+    
+    galleryItem.appendChild(img);
+    galleryItem.appendChild(clickIndicator);
+    
+    return galleryItem;
+  }
+  
+  function loadMoreImages() {
+    if (isLoading || currentImageCount >= maxImages) return;
+    
+    isLoading = true;
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const galleryGrid = document.getElementById('gallery-grid');
+    
+    if (loadingIndicator) {
+      loadingIndicator.style.display = 'flex';
+    }
+    
+    // Simulate loading delay
+    setTimeout(() => {
+      const imagesToLoad = Math.min(6, maxImages - currentImageCount);
+      
+      for (let i = 0; i < imagesToLoad; i++) {
+        const newItem = createGalleryItem(currentImageCount + i);
+        if (galleryGrid) {
+          galleryGrid.appendChild(newItem);
+        }
+      }
+      
+      currentImageCount += imagesToLoad;
+      isLoading = false;
+      
+      if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+      }
+      
+      // Remove scroll listener if we've reached the maximum
+      if (currentImageCount >= maxImages) {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }, 800);
+  }
+  
+  function handleScroll() {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.offsetHeight;
+    
+    // Trigger when user is 300px from bottom
+    if (scrollPosition >= documentHeight - 300) {
+      loadMoreImages();
+    }
+  }
+  
+  // Lightbox Functions
+  function openLightbox(index) {
+    currentLightboxIndex = index;
+    const overlay = document.getElementById('lightbox-overlay');
+    const image = document.getElementById('lightbox-image');
+    
+    if (overlay && image) {
+      image.src = '/images/creative-agency-110551.webp';
+      image.alt = `Office image ${index + 1}`;
+      
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeLightbox() {
+    const overlay = document.getElementById('lightbox-overlay');
+    if (overlay) {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  function previousImage() {
+    if (currentLightboxIndex > 0) {
+      openLightbox(currentLightboxIndex - 1);
+    }
+  }
+  
+  function nextImage() {
+    if (currentLightboxIndex < currentImageCount - 1) {
+      openLightbox(currentLightboxIndex + 1);
+    }
+  }
+  
+  // Global functions for onclick attributes
+  window.openLightbox = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.previousImage = previousImage;
+  window.nextImage = nextImage;
+  
+  // Mobile gallery slider functions
+  function initMobileSlider() {
+    const galleryGrid = document.getElementById('gallery-grid');
+    if (!galleryGrid) return;
+    
+    // Check if mobile
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+    
+    // Touch swipe support with momentum
+    let startX = 0;
+    let scrollLeft = 0;
+    let isDown = false;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    
+    galleryGrid.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - galleryGrid.offsetLeft;
+      scrollLeft = galleryGrid.scrollLeft;
+      lastX = e.touches[0].pageX;
+      lastTime = Date.now();
+      velocity = 0;
+      
+      // Stop any ongoing momentum
+      galleryGrid.style.scrollBehavior = 'auto';
+    }, { passive: true });
+    
+    galleryGrid.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      
+      const x = e.touches[0].pageX - galleryGrid.offsetLeft;
+      const walk = (x - startX) * 2;
+      galleryGrid.scrollLeft = scrollLeft - walk;
+      
+      // Calculate velocity
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastTime;
+      if (timeDiff > 0) {
+        velocity = (e.touches[0].pageX - lastX) / timeDiff;
+      }
+      lastX = e.touches[0].pageX;
+      lastTime = currentTime;
+    }, { passive: true });
+    
+    galleryGrid.addEventListener('touchend', () => {
+      isDown = false;
+      
+      // Add momentum scrolling
+      if (Math.abs(velocity) > 0.1) {
+        galleryGrid.style.scrollBehavior = 'smooth';
+        const momentum = velocity * 100;
+        galleryGrid.scrollLeft -= momentum;
+      }
+      
+      // Reset scroll behavior after animation
+      setTimeout(() => {
+        galleryGrid.style.scrollBehavior = 'smooth';
+      }, 300);
+    }, { passive: true });
+  }
+  
+  // Initialize infinite scroll and keyboard events
+  document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('scroll', handleScroll);
+    initMobileSlider();
+    
+    // Re-initialize slider on window resize
+    window.addEventListener('resize', () => {
+      setTimeout(initMobileSlider, 100);
+    });
+    
+    // Keyboard events
+    document.addEventListener('keydown', (e) => {
+      const overlay = document.getElementById('lightbox-overlay');
+      const isLightboxOpen = overlay && overlay.classList.contains('active');
+      
+      if (isLightboxOpen) {
+        e.preventDefault();
+        
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          previousImage();
+        } else if (e.key === 'ArrowRight') {
+          nextImage();
+        }
+      }
+    });
+  });
+</script>
