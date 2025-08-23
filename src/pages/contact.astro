@@ -963,11 +963,11 @@ import contactImage from '/public/images/features-a.jpg';
 
 <script>
   // Google Maps function
-  function openGoogleMaps(lat, lng, address) {
+  function openGoogleMaps(lat: number, lng: number, address: string) {
     const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_id=${encodeURIComponent(address)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }
   
   // Make function globally available
-  window.openGoogleMaps = openGoogleMaps;
+  (window as any).openGoogleMaps = openGoogleMaps;
 </script>

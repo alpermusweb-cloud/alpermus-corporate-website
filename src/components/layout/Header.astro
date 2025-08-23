@@ -76,6 +76,14 @@ import logo from '/public/images/logo.png';
   
   .logo-link {
     display: block;
+    height: 40px;
+  }
+  
+  .logo-link img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    max-width: 160px;
   }
   
   .desktop-nav {
@@ -184,6 +192,14 @@ import logo from '/public/images/logo.png';
   @media (max-width: 768px) {
     .header-content {
       gap: 20px;
+    }
+    
+    .logo-link {
+      height: 35px;
+    }
+    
+    .logo-link img {
+      max-width: 140px;
     }
     
     .desktop-nav {
