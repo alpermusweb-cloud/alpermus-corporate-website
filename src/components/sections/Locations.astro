@@ -12,7 +12,7 @@
     <div class="locations-content">
       <!-- Location Card 1 -->
       <div class="location-card">
-        <h3 class="location-title">New York Office</h3>
+        <h3 class="location-title">Home Store Romford</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Nenuya Centre<br>Elia Street<br>New York, USA</p>
@@ -26,7 +26,7 @@
       
       <!-- Location Card 2 -->
       <div class="location-card">
-        <h3 class="location-title">London Branch</h3>
+        <h3 class="location-title">Home Store Woodgreen</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Westminster Plaza<br>Oxford Street<br>London, UK</p>
@@ -40,7 +40,7 @@
       
       <!-- Location Card 3 -->
       <div class="location-card">
-        <h3 class="location-title">Tokyo Studio</h3>
+        <h3 class="location-title">Home Store Hammersmith</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Shibuya Center<br>Shibuya District<br>Tokyo, Japan</p>
@@ -54,7 +54,7 @@
       
       <!-- Location Card 4 -->
       <div class="location-card">
-        <h3 class="location-title">Berlin Hub</h3>
+        <h3 class="location-title">Home Decor</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Mitte Quarter<br>Friedrichstraße<br>Berlin, Germany</p>
@@ -68,7 +68,7 @@
       
       <!-- Location Card 5 -->
       <div class="location-card">
-        <h3 class="location-title">Sydney Office</h3>
+        <h3 class="location-title">Home Values</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Harbour Bridge Plaza<br>Circular Quay<br>Sydney, Australia</p>
@@ -82,7 +82,7 @@
       
       <!-- Location Card 6 -->
       <div class="location-card">
-        <h3 class="location-title">Dubai Branch</h3>
+        <h3 class="location-title">Pound Shop Hounslow</h3>
         <div class="location-info">
           <div class="location-address">
             <p>Business Bay Tower<br>Sheikh Zayed Road<br>Dubai, UAE</p>
@@ -96,7 +96,7 @@
       
       <!-- Location Card 7 -->
       <div class="location-card">
-        <h3 class="location-title">Toronto Studio</h3>
+        <h3 class="location-title">Factory Outlet</h3>
         <div class="location-info">
           <div class="location-address">
             <p>CN Tower District<br>Front Street West<br>Toronto, Canada</p>
@@ -166,13 +166,20 @@
   .location-title {
     font-family: 'Syne', sans-serif;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 1.2;
+    font-size: 16px;
+    line-height: 1.1;
     color: #000000;
     margin: 0;
     text-align: center;
     border-bottom: 2px solid #121212;
     padding-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .location-info {
@@ -273,6 +280,14 @@
     
     .location-contact a {
       font-size: 12px;
+    }
+  }
+  
+  /* Medium screens - smaller font for longer titles */
+  @media (max-width: 1200px) {
+    .location-title {
+      font-size: 14px;
+      min-height: 32px;
     }
   }
   

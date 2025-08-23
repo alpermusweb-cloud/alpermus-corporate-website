@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import teamImage from '/public/images/full-img.jpg';
+import teamImage from '/public/images/footer.jpg';
 ---
 
 <section class="team">
@@ -9,7 +9,7 @@ import teamImage from '/public/images/full-img.jpg';
       <!-- Team Title -->
       <div class="team-title-section">
         <h2 class="team-title">
-          Behind the success has a talentes & productive team
+          Stylish Choices at Pocket-Friendly Prices
         </h2>
       </div>
       
@@ -18,7 +18,7 @@ import teamImage from '/public/images/full-img.jpg';
         <div class="team-image-container">
           <Image 
             src={teamImage} 
-            alt="Team members working together" 
+            alt="Home Store Footer" 
             width={1920} 
             height={600}
             class="team-image"
@@ -26,7 +26,7 @@ import teamImage from '/public/images/full-img.jpg';
         </div>
         
         <div class="team-tagline">
-          <p>have a nice journey with helo</p>
+          <p>Stop by Our Locations – Your Next Favorite Home Item Awaits!</p>
         </div>
       </div>
     </div>
@@ -102,13 +102,13 @@ import teamImage from '/public/images/full-img.jpg';
   .team-tagline p {
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
-    font-size: 24px;
-    line-height: 1.5;
+    font-size: 20px;
+    line-height: 1.4;
     text-transform: uppercase;
     text-align: center;
     color: #000000;
     margin: 0;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   
   /* Responsive Design */
@@ -131,7 +131,8 @@ import teamImage from '/public/images/full-img.jpg';
     }
     
     .team-tagline p {
-      font-size: 20px;
+      font-size: 18px;
+      letter-spacing: 0.5px;
     }
   }
   
@@ -174,7 +175,9 @@ import teamImage from '/public/images/full-img.jpg';
     }
     
     .team-tagline p {
-      font-size: 16px;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
     }
   }
 </style>

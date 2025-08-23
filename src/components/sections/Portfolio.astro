@@ -1,5 +1,9 @@
 ---
 // Portfolio section with services list and team members
+import { Image } from 'astro:assets';
+import homeRomford from '/public/images/home-romford1.jpg';
+import homeWoodgreen from '/public/images/home-woodgren1.jpg';
+import factoryOutlet from '/public/images/factory-outlet1.jpg';
 ---
 
 <section class="portfolio">
@@ -104,36 +108,47 @@
         <!-- Team Member Card 1 -->
         <div class="team-member-card">
           <div class="member-image">
-            <div class="member-image-placeholder"></div>
+            <Image 
+              src={homeRomford} 
+              alt="Home Store Romford" 
+              width={400} 
+              height={500}
+              class="member-image-actual"
+            />
           </div>
           
           <div class="member-info">
-            <h3 class="member-name">Gargy Sileon</h3>
-            <p class="member-role">UI Design</p>
+            <h3 class="member-name">Home Store</h3>
+            <p class="member-role">Romford</p>
           </div>
         </div>
         
         <!-- Team Member Card 2 -->
         <div class="team-member-card">
           <div class="member-image">
-            <div class="member-image-placeholder"></div>
+            <Image 
+              src={homeWoodgreen} 
+              alt="Home Store Woodgreen" 
+              width={400} 
+              height={500}
+              class="member-image-actual"
+            />
           </div>
           
           <div class="member-info">
-            <h3 class="member-name">Gargy Sileon</h3>
-            <p class="member-role">UI Design</p>
+            <h3 class="member-name">Home Store</h3>
+            <p class="member-role">Woodgreen</p>
           </div>
         </div>
         
         <!-- Team Member Card 3 -->
         <div class="team-member-card">
           <div class="member-image">
-            <div class="member-image-placeholder"></div>
+            <Image src={factoryOutlet} alt="Factory Outlet" width={400} height={500} class="member-image-actual"/>
           </div>
           
           <div class="member-info">
-            <h3 class="member-name">Gargy Sileon</h3>
-            <p class="member-role">UI Design</p>
+            <h3 class="member-name">Factory Outlet</h3>
           </div>
         </div>
         
@@ -331,6 +346,13 @@
     height: 100%;
     background: #f0f0f0;
     border: 1px solid #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  .member-image-actual {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 4px;
   }
   
