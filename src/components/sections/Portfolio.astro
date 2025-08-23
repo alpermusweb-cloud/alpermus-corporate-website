@@ -309,12 +309,14 @@ import factoryOutlet from '/public/images/factory-outlet1.jpg';
   .team-member-card {
     border-right: 1px solid #121212;
     border-bottom: 1px solid #121212;
-    padding: 40px;
+    padding: 40px !important;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    min-height: 650px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+    min-height: 650px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .team-member-card:nth-child(2) {
@@ -336,9 +338,13 @@ import factoryOutlet from '/public/images/factory-outlet1.jpg';
   }
   
   .member-image {
-    width: 100%;
-    height: 500px;
-    margin-bottom: 22px;
+    width: 100% !important;
+    height: 500px !important;
+    margin-bottom: 22px !important;
+    max-width: 100% !important;
+    min-height: 500px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
   }
   
   .member-image-placeholder {
@@ -350,10 +356,13 @@ import factoryOutlet from '/public/images/factory-outlet1.jpg';
   }
   
   .member-image-actual {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
     border-radius: 4px;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    flex-shrink: 0 !important;
   }
   
   .member-info {
