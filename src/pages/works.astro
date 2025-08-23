@@ -38,7 +38,7 @@ const locations = allLocations.slice(0, 7);
                   <div class="location-image">
                     <img 
                       src="/images/creative-agency-110551.webp" 
-                      alt={`${location.data.city} ${location.data.branch}`}
+                      alt={`${location.data.city}${location.data.branch ? ` ${location.data.branch}` : ''}`}
                       width="400"
                       height="400"
                       loading="lazy"
@@ -50,7 +50,9 @@ const locations = allLocations.slice(0, 7);
                   <div class="location-info">
                     <div class="location-header">
                       <h2 class="location-title">{location.data.city}</h2>
-                      <h3 class="location-branch">{location.data.branch}</h3>
+                      {location.data.branch && (
+                        <h3 class="location-branch">{location.data.branch}</h3>
+                      )}
                     </div>
                     
                     <div class="location-cta">
@@ -73,7 +75,7 @@ const locations = allLocations.slice(0, 7);
                   <div class="location-image">
                     <img 
                       src="/images/creative-agency-110551.webp" 
-                      alt={`${location.data.city} ${location.data.branch}`}
+                      alt={`${location.data.city}${location.data.branch ? ` ${location.data.branch}` : ''}`}
                       width="400"
                       height="400"
                       loading="lazy"
@@ -85,7 +87,9 @@ const locations = allLocations.slice(0, 7);
                   <div class="location-info">
                     <div class="location-header">
                       <h2 class="location-title">{location.data.city}</h2>
-                      <h3 class="location-branch">{location.data.branch}</h3>
+                      {location.data.branch && (
+                        <h3 class="location-branch">{location.data.branch}</h3>
+                      )}
                     </div>
                     
                     <div class="location-cta">
