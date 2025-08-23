@@ -388,6 +388,8 @@ const { Content } = await location.render();
     display: flex;
     flex-direction: column;
     gap: 40px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .contact-info,
@@ -460,10 +462,15 @@ const { Content } = await location.render();
   }
   
   /* Map */
+  .map-section {
+    margin-bottom: 30px;
+  }
+  
   .map-container {
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    width: 100%;
   }
   
   .directions-btn {
@@ -472,18 +479,31 @@ const { Content } = await location.render();
     justify-content: center;
     background: #121212;
     color: #FFFFFF;
-    padding: 12px 24px;
+    padding: 10px 16px;
     border-radius: 6px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     text-decoration: none;
     transition: background-color 0.3s ease;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .directions-btn:hover {
     background: #333333;
+  }
+
+  /* Mobile responsive for directions button */
+  @media (max-width: 480px) {
+    .directions-btn {
+      font-size: 12px;
+      padding: 8px 12px;
+    }
   }
   
   /* Gallery */
