@@ -31,12 +31,12 @@ Every Home</h1>
         <div class="grid-content">
           <!-- First Row - 4 Cards -->
           <div class="grid-row grid-row-4">
-            {locations.slice(0, 4).map((location) => (
+            {locations.slice(0, 4).map((location, index) => (
               <article class="location-card">
                 <a href={`/locations/${location.slug}`} class="location-link">
                   <div class="location-image">
                     <img 
-                      src="/images/creative-agency-110551.webp" 
+                      src={location.slug === 'factory-outlet' ? '/images/factory-outlet1.jpg' : `/images/gallery/gallery${[3, 7, 12, 16][index]}.jpg`} 
                       alt={`${location.data.city}${location.data.branch ? ` ${location.data.branch}` : ''}`}
                       width="400"
                       height="400"
@@ -68,12 +68,12 @@ Every Home</h1>
           
           <!-- Second Row - 3 Cards (Centered) -->
           <div class="grid-row grid-row-3">
-            {locations.slice(4, 7).map((location) => (
+            {locations.slice(4, 7).map((location, index) => (
               <article class="location-card">
                 <a href={`/locations/${location.slug}`} class="location-link">
                   <div class="location-image">
                     <img 
-                      src="/images/creative-agency-110551.webp" 
+                      src={location.slug === 'factory-outlet' ? '/images/factory-outlet1.jpg' : `/images/gallery/gallery${[21, 25, 29][index]}.jpg`} 
                       alt={`${location.data.city}${location.data.branch ? ` ${location.data.branch}` : ''}`}
                       width="400"
                       height="400"

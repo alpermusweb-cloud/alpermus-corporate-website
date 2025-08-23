@@ -11,7 +11,7 @@ import moveAImage from '/public/images/moveA-56586a.png';
       <div class="hero-text-section">
         <div class="hero-main-title">
           <div class="title-container">
-            <h1 class="hero-title">Hello, Making Your Home<br>Feel Right, for Less</h1>
+            <h1 class="hero-title">Hello,<br>Making Your Home<br>Feel Right, for Less</h1>
           </div>
         </div>
         
@@ -55,7 +55,7 @@ import moveAImage from '/public/images/moveA-56586a.png';
   /* Main Text Section */
   .hero-text-section {
     width: 100% !important;
-    max-width: 980px !important;
+    max-width: 1200px !important;
     margin-bottom: 30px;
     position: relative;
     box-sizing: border-box !important;
@@ -74,7 +74,7 @@ import moveAImage from '/public/images/moveA-56586a.png';
     font-family: 'Syne', sans-serif;
     font-weight: 500;
     font-size: 110px;
-    line-height: 1.2;
+    line-height: 1.1;
     color: #121212;
     margin: 0;
     text-align: left;
@@ -107,23 +107,25 @@ import moveAImage from '/public/images/moveA-56586a.png';
   @media (max-width: 1200px) {
     .hero-title {
       font-size: 80px;
+      line-height: 1.1;
     }
     
     .hero-text-section {
       width: 100%;
-      max-width: 980px;
+      max-width: 1000px;
     }
   }
   
   @media (max-width: 768px) {
     .hero {
-      padding: 40px 20px;
-      margin-top: 70px;
+      padding: 60px 20px 40px;
+      margin-top: 90px;
     }
     
     .hero-title {
-      font-size: 42px;
+      font-size: 36px;
       line-height: 1.1;
+      margin-bottom: 20px;
     }
     
     .hero-image-container {
@@ -132,23 +134,33 @@ import moveAImage from '/public/images/moveA-56586a.png';
     
     .hero-text-section {
       width: 100%;
-      max-width: none;
-      margin-bottom: 30px;
+      max-width: 100%;
+      margin-bottom: 40px;
+      padding: 0 10px;
     }
   }
   
   @media (max-width: 480px) {
     .hero {
-      padding: 30px 15px;
+      padding: 50px 15px 30px;
+      margin-top: 80px;
     }
     
     .hero-title {
-      font-size: 32px;
+      font-size: 28px;
       line-height: 1.1;
+      margin-bottom: 20px;
     }
     
     .hero-image-container {
       height: 300px;
+    }
+    
+    .hero-text-section {
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 5px;
     }
   }
 </style>

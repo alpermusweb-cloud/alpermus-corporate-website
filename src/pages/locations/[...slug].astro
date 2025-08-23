@@ -118,20 +118,29 @@ const { Content } = await location.render();
             {location.data.coords && (
               <div class="map-section">
                 <h3 class="info-title">Location Map</h3>
-                <div class="map-container">
-                  <iframe
-                    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${location.data.coords.lat},${location.data.coords.lng}`}
-                    width="100%"
-                    height="300"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                  </iframe>
+                <div class="map-container clickable-map" onclick={`window.open('${location.data.mapUrl || `https://www.google.com/maps/dir/?api=1&destination=${location.data.coords.lat},${location.data.coords.lng}`}', '_blank')`}>
+                  <div class="map-placeholder">
+                    <div class="map-icon">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+                      </svg>
+                    </div>
+                    <p class="map-text">Click to open in Google Maps</p>
+                    <p class="map-address">{location.data.address}</p>
+                  </div>
+                  
+                  <!-- Map overlay for hover effect -->
+                  <div class="map-overlay">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="white" stroke-width="2" fill="none"/>
+                      <circle cx="12" cy="9" r="3" stroke="white" stroke-width="2" fill="white"/>
+                    </svg>
+                  </div>
                 </div>
                 
                 <a 
-                  href={`https://www.google.com/maps/dir/?api=1&destination=${location.data.coords.lat},${location.data.coords.lng}`}
+                  href={location.data.mapUrl || `https://www.google.com/maps/dir/?api=1&destination=${location.data.coords.lat},${location.data.coords.lng}`}
                   target="_blank"
                   rel="noopener"
                   class="directions-btn"
@@ -151,12 +160,12 @@ const { Content } = await location.render();
         <h3 class="gallery-title">Gallery</h3>
         <div class="gallery-container">
           <div class="gallery-grid" id="gallery-grid">
-            <!-- Initial images (first 6) -->
-            {Array.from({length: 12}).map((_, index) => (
+            <!-- Gallery images (all 29) -->
+            {Array.from({length: 29}).map((_, index) => (
               <div class="gallery-item" data-index={index} onclick={`openLightbox(${index})`}>
                 <img 
-                  src="/images/creative-agency-110551.webp" 
-                  alt={`${location.data.city} office ${index + 1}`}
+                  src={`/images/gallery/gallery${index + 1}.jpg`} 
+                  alt={`${location.data.city} store gallery ${index + 1}`}
                   width="400"
                   height="300"
                   loading={index < 6 ? "eager" : "lazy"}
@@ -223,7 +232,7 @@ const { Content } = await location.render();
   /* Location Hero */
   .location-hero {
     background: linear-gradient(135deg, #FCF9F4 0%, #FFFFFF 100%);
-    padding: 100px 30px 60px;
+    padding: 120px 30px 60px;
     border-left: 1px solid #121212;
     border-right: 1px solid #121212;
     border-bottom: 1px solid #121212;
@@ -467,10 +476,81 @@ const { Content } = await location.render();
   }
   
   .map-container {
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     margin-bottom: 15px;
     width: 100%;
+    height: 300px;
+    position: relative;
+  }
+  
+  .clickable-map {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #121212;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .clickable-map:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+  }
+  
+  .map-placeholder {
+    text-align: center;
+    padding: 40px 20px;
+    color: #121212;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .map-icon {
+    margin: 0 auto 20px auto;
+    color: #121212;
+    opacity: 0.8;
+  }
+  
+  .map-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #121212;
+    margin: 0 0 10px 0;
+  }
+  
+  .map-address {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 50%;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+    z-index: 3;
+  }
+  
+  .clickable-map:hover .map-overlay {
+    opacity: 1;
+  }
+  
+  .clickable-map:hover .map-placeholder {
+    opacity: 0.7;
   }
   
   .directions-btn {
@@ -503,6 +583,27 @@ const { Content } = await location.render();
     .directions-btn {
       font-size: 12px;
       padding: 8px 12px;
+    }
+    
+    .map-container {
+      height: 250px;
+    }
+    
+    .map-placeholder {
+      padding: 30px 15px;
+    }
+    
+    .map-text {
+      font-size: 16px;
+    }
+    
+    .map-address {
+      font-size: 13px;
+    }
+    
+    .map-icon svg {
+      width: 40px;
+      height: 40px;
     }
   }
   
@@ -763,7 +864,7 @@ const { Content } = await location.render();
   
   @media (max-width: 768px) {
     .location-hero {
-      padding: 100px 30px 60px;
+      padding: 140px 30px 60px;
     }
     
     .location-details {
@@ -869,7 +970,7 @@ const { Content } = await location.render();
   
   @media (max-width: 480px) {
     .location-hero {
-      padding: 80px 20px 50px;
+      padding: 120px 20px 50px;
     }
     
     .location-details {
@@ -961,9 +1062,9 @@ const { Content } = await location.render();
 
 <!-- Gallery Infinite Scroll & Lightbox Script -->
 <script>
-  let currentImageCount = 12;
+  let currentImageCount = 29;
   let isLoading = false;
-  const maxImages = 24; // Maximum images to load
+  const maxImages = 29; // Maximum images to load (all gallery images)
   let currentLightboxIndex = 0;
   
   function createGalleryItem(index) {
@@ -982,8 +1083,8 @@ const { Content } = await location.render();
     
     // Create image element properly
     const img = document.createElement('img');
-    img.src = '/images/creative-agency-110551.webp';
-    img.alt = `Office image ${index + 1}`;
+    img.src = `/images/gallery/gallery${(index % 29) + 1}.jpg`;
+    img.alt = `Store gallery ${index + 1}`;
     img.width = 400;
     img.height = 300;
     img.loading = 'lazy';
@@ -1099,8 +1200,8 @@ const { Content } = await location.render();
     const image = document.getElementById('lightbox-image');
     
     if (overlay && image) {
-      image.src = '/images/creative-agency-110551.webp';
-      image.alt = `Office image ${index + 1}`;
+      image.src = `/images/gallery/gallery${(index % 29) + 1}.jpg`;
+      image.alt = `Store gallery ${index + 1}`;
       
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';

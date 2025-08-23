@@ -4,8 +4,12 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import MobileSidebar from '../components/layout/MobileSidebar.astro';
 import { Image } from 'astro:assets';
-import teamImage from '/public/images/full-img.jpg';
-import featuresImage from '/public/images/features-a.jpg';
+import teamImage from '/public/images/about-us2.jpg';
+import featuresImage from '/public/images/about-us1.jpg';
+import icon1 from '/public/images/icon-1.png';
+import icon2 from '/public/images/icon-2.png';
+import icon3 from '/public/images/icon-3.png';
+import icon4 from '/public/images/icon-4.png';
 ---
 
 <BaseLayout title="About Us | Home Store - Our Story & Mission">
@@ -17,7 +21,8 @@ import featuresImage from '/public/images/features-a.jpg';
         <div class="about-hero-content">
           <div class="hero-text">
             <h1 class="about-title">
-              Hello, Making Your Home<br>
+              Hello,<br>
+              Making Your Home<br>
               Feel Right, for Less
             </h1>
             
@@ -74,10 +79,13 @@ import featuresImage from '/public/images/features-a.jpg';
           <div class="values-grid">
             <div class="value-card">
               <div class="value-icon">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M20 5L35 15V25L20 35L5 25V15L20 5Z" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <circle cx="20" cy="20" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                </svg>
+                <Image 
+                  src={icon1} 
+                  alt="Decoration / Accessories Icon" 
+                  width={60} 
+                  height={60}
+                  class="service-icon"
+                />
               </div>
               <h3 class="value-title">Decoration / Accessories</h3>
               <p class="value-description">
@@ -87,10 +95,13 @@ import featuresImage from '/public/images/features-a.jpg';
             
             <div class="value-card">
               <div class="value-icon">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <path d="M20 8V12M32 20H28M20 32V28M8 20H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
+                <Image 
+                  src={icon2} 
+                  alt="Kitchen and Table Icon" 
+                  width={60} 
+                  height={60}
+                  class="service-icon"
+                />
               </div>
               <h3 class="value-title">Kitchen and Table</h3>
               <p class="value-description">
@@ -100,11 +111,13 @@ import featuresImage from '/public/images/features-a.jpg';
             
             <div class="value-card">
               <div class="value-icon">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <rect x="8" y="6" width="24" height="28" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <rect x="12" y="10" width="16" height="2" rx="1" fill="currentColor"/>
-                  <rect x="12" y="14" width="12" height="2" rx="1" fill="currentColor"/>
-                </svg>
+                <Image 
+                  src={icon3} 
+                  alt="Bedroom & Home Textiles Icon" 
+                  width={60} 
+                  height={60}
+                  class="service-icon"
+                />
               </div>
               <h3 class="value-title">Bedroom & Home Textiles</h3>
               <p class="value-description">
@@ -114,10 +127,13 @@ import featuresImage from '/public/images/features-a.jpg';
             
             <div class="value-card">
               <div class="value-icon">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
-                  <path d="M8 32V28C8 24 12 20 20 20C28 20 32 24 32 28V32" stroke="currentColor" stroke-width="2"/>
-                </svg>
+                <Image 
+                  src={icon4} 
+                  alt="Campaign / Discount Section Icon" 
+                  width={60} 
+                  height={60}
+                  class="service-icon"
+                />
               </div>
               <h3 class="value-title">Campaign / Discount Section</h3>
               <p class="value-description">
@@ -417,11 +433,12 @@ Every Home</h2>
     padding: 40px 30px;
     text-align: center;
     transition: all 0.3s ease;
-    min-height: 350px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    justify-content: space-between;
+    gap: 20px;
   }
   
   .value-card:hover {
@@ -434,6 +451,16 @@ Every Home</h2>
     height: 60px;
     color: #121212;
     transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .service-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
   }
   
   .value-card:hover .value-icon {
@@ -456,7 +483,6 @@ Every Home</h2>
     line-height: 1.6;
     color: #444444;
     margin: 0;
-    flex: 1;
   }
   
   /* Team Overview */
@@ -587,12 +613,15 @@ Every Home</h2>
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
-    padding: 30px 20px;
+    padding: 35px 20px;
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #121212;
     border-radius: 12px;
     transition: all 0.3s ease;
+    height: 170px;
+    min-width: 0;
   }
   
   .office-item:hover {
@@ -611,15 +640,20 @@ Every Home</h2>
   
   .office-info {
     text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
   }
   
   .office-city {
     font-family: 'Syne', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
     color: #000000;
-    margin: 0 0 8px 0;
+    margin: 0;
   }
   
   .office-specialty {
@@ -717,6 +751,10 @@ Every Home</h2>
   }
   
   @media (max-width: 768px) {
+    .about-page {
+      margin-top: 80px;
+    }
+    
     .about-hero,
     .mission-vision,
     .values-section,
@@ -757,6 +795,10 @@ Every Home</h2>
   }
   
   @media (max-width: 480px) {
+    .about-page {
+      margin-top: 90px;
+    }
+    
     .about-hero,
     .mission-vision,
     .values-section,

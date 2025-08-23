@@ -24,15 +24,15 @@ import icon4 from '/public/images/icon-4.png';
         
         <div class="intro-content">
           <h2 class="intro-title">
-            Hello, Making Your Home<br>
-            Feel Right, for Less
+            Making Every Corner of<br>
+            Your Home Feel Special
           </h2>
           
           <p class="intro-description">
             Hi, I'm Jsc Stf Ltd. I believe a home is more than just a place to live – it's a reflection of who we are. When I started to Home Store shops, my vision was to bring together timeless elegance and everyday comfort. Every piece is thoughtfully chosen to help you create a space that feels warm, welcoming, and uniquely yours.
           </p>
           
-          <a href="#about" class="learn-more-link">
+          <a href="/about" class="learn-more-link">
             LEARN MORE US
             <div class="learn-more-underline"></div>
           </a>
@@ -423,23 +423,71 @@ import icon4 from '/public/images/icon-4.png';
   
   @media (max-width: 768px) {
     .services-intro-section {
-      padding: 80px 30px;
+      padding: 60px 20px;
       gap: 40px;
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .intro-content {
+      max-width: 100% !important;
+      min-width: auto !important;
+    }
+    
+    .intro-title {
+      font-size: 32px;
+      text-align: center;
+    }
+    
+    .intro-description {
+      font-size: 16px;
+      text-align: center;
     }
     
     .services-cards-section {
       grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
     }
     
     .service-card {
-      padding: 50px 30px;
+      padding: 30px 20px;
       border-right: none;
       border-bottom: 1px solid #121212;
-      min-height: 350px;
+      min-height: 280px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     
     .service-card:last-child {
       border-bottom: none;
+    }
+    
+    /* Tüm mobile card'larına border ver */
+    .service-card:nth-child(1),
+    .service-card:nth-child(2),
+    .service-card:nth-child(3) {
+      border-bottom: 1px solid #121212;
+    }
+    
+    .service-image {
+      margin: 0 auto 15px auto;
+    }
+    
+    .service-title {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    
+    .service-description {
+      font-size: 14px;
+      text-align: center;
+      max-width: 280px;
     }
     
     .service-title {
@@ -468,16 +516,60 @@ import icon4 from '/public/images/icon-4.png';
   
   @media (max-width: 480px) {
     .services-intro-section {
-      padding: 60px 20px;
+      padding: 40px 15px;
       gap: 30px;
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .intro-content {
+      max-width: 100% !important;
+      min-width: auto !important;
     }
     
     .intro-title {
-      font-size: 32px;
+      font-size: 26px;
+      text-align: center;
     }
     
     .intro-description {
-      font-size: 16px;
+      font-size: 14px;
+      text-align: center;
+    }
+    
+    .services-cards-section {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .service-card {
+      padding: 25px 15px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #121212;
+    }
+    
+    .service-card:last-child {
+      border-bottom: none;
+    }
+    
+    .service-image {
+      margin: 0 auto 12px auto;
+    }
+    
+    .service-title {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    
+    .service-description {
+      font-size: 13px;
+      text-align: center;
+      max-width: 250px;
     }
     
     .features-image {
